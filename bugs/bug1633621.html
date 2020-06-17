@@ -9,9 +9,24 @@ window.addEventListener('DOMContentLoaded', () => {
     input1.blur();
     input1.focus();
   });
+  
+  let input2 = document.getElementById('input2');
+  input2.addEventListener("input", () => {
+    input2.blur();
+  });
+  
+  let input3 = document.getElementById('input3');
+  input3.addEventListener("input", () => {
+    input3.blur();
+    window.setTimeout(() => {
+      input3.focus();
+    }, 2000);
+  });
 });
 </script>
 <body>
-<input id=input1>
+input1: <input id=input1> (blur then focus)<br>
+input2: <input id=input2> (blur only)<br>
+input3: <input id=input3> (blur then focus with timeout)<br>
 </body>
 </html>
