@@ -5,11 +5,12 @@
   </head>
 <body>
   <div>
-    <input inputmode="text" id="input1"><br><span id="state1"></span>
+    <input inputmode="text" id="input1" placeholder="inputmode"><br><span id="state1"></span>
   </div>
   <div>
-    <input enterkeyhint="next" id="input2"><br><span id="state2"></span>
+    <input enterkeyhint="next" id="input2" placeholder="enterkeyhint"><br><span id="state2"></span>
   </div>
+  <div id="log"></div>
 <script>
   document.getElementById("input1").addEventListener("input", e => {
     let elm = document.getElementById("input1");
@@ -30,6 +31,12 @@
       elm.setAttribute("enterkeyhint", "previous");
       document.getElementById("state2").innerHTML = "enterkeyhint is previous";
     }
+  });
+  document.getElementById("input1").addEventListener("compositionstart", e => {
+    document.getElementById("state2").innerHTML += "fired compositionstart<br>"
+  });
+  document.getElementById("input1").addEventListener("compositionend", e => {
+    document.getElementById("state2").innerHTML += "fired compositionend<br>"
   });
 </script>
 </body>
