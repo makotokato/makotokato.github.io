@@ -2,8 +2,10 @@
 <html>
   <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+<body>
+<input inputmode="text" id="input1"><span id="state"></span>
 <script>
-function init() {
   document.getElementById("input1").addEventListener("input1", e => {
     let elm = document.getElementById("input1");
     if (elm.inputMode == "text") {
@@ -15,9 +17,5 @@ function init() {
     }
   });
 }
-</script>
-  </head>
-<body onload="init()">
-<input inputmode="text" id="input1"><span id="state"></span>
 </body>
 </html>
