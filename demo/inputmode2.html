@@ -33,10 +33,10 @@
     }
   });
   document.getElementById("input1").addEventListener("compositionstart", e => {
-    document.getElementById("state2").innerHTML += "fired compositionstart<br>"
+    document.getElementById("log").innerHTML += "fired compositionstart<br>"
   });
   document.getElementById("input1").addEventListener("compositionend", e => {
-    document.getElementById("state2").innerHTML += "fired compositionend<br>"
+    document.getElementById("log").innerHTML += "fired compositionend<br>"
   });
 </script>
 </body>
