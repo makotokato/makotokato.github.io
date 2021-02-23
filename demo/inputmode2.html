@@ -23,7 +23,7 @@
   });
   document.getElementById("input2").addEventListener("input", e => {
     let elm = document.getElementById("input1");
-    if (elm.inputMode == "send") {
+    if (elm.enterKeyHint == "send") {
       elm.setAttribute("enterkeyhint", "search");
       document.getElementById("state2").innerHTML = "enterkeyhint is search";
     } else {
