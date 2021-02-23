@@ -8,7 +8,7 @@
     <input inputmode="text" id="input1"><br><span id="state1"></span>
   </div>
   <div>
-    <input enterkeyhint="send" id="input2"><br><span id="state2"></span>
+    <input enterkeyhint="next" id="input2"><br><span id="state2"></span>
   </div>
 <script>
   document.getElementById("input1").addEventListener("input", e => {
@@ -23,12 +23,12 @@
   });
   document.getElementById("input2").addEventListener("input", e => {
     let elm = document.getElementById("input1");
-    if (elm.enterKeyHint == "send") {
-      elm.setAttribute("enterkeyhint", "search");
+    if (elm.enterKeyHint == "next") {
+      elm.setAttribute("enterkeyhint", "next");
       document.getElementById("state2").innerHTML = "enterkeyhint is search";
     } else {
-      elm.setAttribute("enterkeyhint", "send");
-      document.getElementById("state2").innerHTML = "enterkeyhint is send";
+      elm.setAttribute("enterkeyhint", "previous");
+      document.getElementById("state2").innerHTML = "enterkeyhint is previous";
     }
   });
 </script>
