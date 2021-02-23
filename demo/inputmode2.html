@@ -35,6 +35,9 @@
   document.getElementById("input1").addEventListener("compositionstart", e => {
     document.getElementById("log").innerHTML += "fired compositionstart<br>"
   });
+  document.getElementById("input1").addEventListener("compositionupdate", e => {
+    document.getElementById("log").innerHTML += "fired compositionupdate<br>"
+  });
   document.getElementById("input1").addEventListener("compositionend", e => {
     document.getElementById("log").innerHTML += "fired compositionend<br>"
   });
