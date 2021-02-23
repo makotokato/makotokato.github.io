@@ -4,16 +4,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 <body>
-<input inputmode="text" id="input1"><span id="state"></span>
+  <div>
+    <input inputmode="text" id="input1"><br><span id="state1"></span>
+  </div>
+  <div>
+    <input enterkeyhint="send" id="input2"><br><span id="state2"></span>
+  </div>
 <script>
   document.getElementById("input1").addEventListener("input", e => {
     let elm = document.getElementById("input1");
     if (elm.inputMode == "text") {
       elm.setAttribute("inputmode", "search");
-      document.getElementById("state").innerHTML = "inputmode is search";
+      document.getElementById("state1").innerHTML = "inputmode is search";
     } else {
       elm.setAttribute("inputmode", "text");
-      document.getElementById("state").innerHTML = "inputmode is text";
+      document.getElementById("state1").innerHTML = "inputmode is text";
+    }
+  });
+  document.getElementById("input2").addEventListener("input", e => {
+    let elm = document.getElementById("input1");
+    if (elm.inputMode == "send") {
+      elm.setAttribute("enterkeyhint", "search");
+      document.getElementById("state2").innerHTML = "enterkeyhint is search";
+    } else {
+      elm.setAttribute("inputmode", "send");
+      document.getElementById("state2").innerHTML = "enterkeyhint is send";
     }
   });
 </script>
