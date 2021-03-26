@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <body>
+  <head>
   <script>
-    document.write("window.top.mozInnerScreenX: ");
-    document.write(window.top.mozInnerScreenX);
-    document.write("<br>window.top.mozInnerScreenY: ");
-    document.write(window.top.mozInnerScreenY);
-    document.write("<br>window.mozInnerScreenX: ");
-    document.write(window.mozInnerScreenX);
-    document.write("<br>window.mozInnerScreenY: ");
-    document.write(window.mozInnerScreenY);
+    function onload() {
+      document.getElementById("value1").innerText = window.top.mozInnerScreenX;
+      document.getElementById("value2").innerText = window.top.mozInnerScreenY;
+      document.getElementById("value3").innerText = window.mozInnerScreenX;
+      document.getElementById("value4").innerText = window.mozInnerScreenY;
+    }
   </script>
+  </head>
+  <body>
+    <div>window.top.mozInnerScreenX: <span id="value1"></span></div>
+    <div>window.top.mozInnerScreenY: <span id="value2"></span></div>
+    <div>window.mozInnerScreenX: <span id="value3"></span></div>
+    <div>window.mozInnerScreenY: <span id="value4"></span></div>
   </body>
 </html>
     
