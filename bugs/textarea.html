@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script class="testbody" type="application/javascript">
+  function doTest() {
+    let testdata = "";
+    for (let i = 0; i < 1024 * 1024 * 2; i++) {
+      testdata += "0";
+    }
+    let textarea = document.getElementById("textarea");
+    textarea.value = testdata;
+</script>
+</head>
+<body onload="doTest();">
+  <form>
+    <textarea id="textarea"></textarea>
+  </form>
+</body>
+</html>
