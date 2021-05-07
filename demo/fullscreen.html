@@ -16,13 +16,13 @@ function exitFullscreen() {
 <div>
   <input id="input1"><br>
   <textarea></textarea>
-  <button onclick="enterFullscreen()">Fullscreen</botton>
-  <button onclick="exitFullscreen()">Exit Fullscreen</botton>
+  <button onclick="enterFullscreen()">Fullscreen</button>
+  <button onclick="exitFullscreen()">Exit Fullscreen</button>
   <span id="status"></span>
 </div>
   <script>
     document.getElementById("input1").addEventListener("input", () => {
-      document.getElementById("status").innerHTML = window.innerHeigh;
+      document.getElementById("status").innerHTML = "InnerHeight: " + window.innerHeight;
     });
   </script>
 </body>
