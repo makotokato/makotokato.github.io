@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+function enterFullscreen() {
+  document.documentElement.requestFullscreen();
+}
+
+function exitFullscreen() {
+  document.documentElement.exitFullscreen();
+}
+</script>
+</head>
+<body>
+<div>
+  <input><br>>
+  <textarea></textarea>
+<button onclick="enterFullscreen()">Fullscreen</botton>
+<button onclick="exitFullscreen()">Exit Fullscreen</botton>
+</div>
+</body>
+</html>
