@@ -21,9 +21,9 @@ function exitFullscreen() {
   <span id="status"></span>
 </div>
   <script>
-    document.getElementById("input1").addEventListener("input", () => {
+    window.setTimeout(() => {
       document.getElementById("status").innerHTML = "InnerHeight: " + window.innerHeight;
-    });
+    }, 5 * 1000);
   </script>
 </body>
 </html>
