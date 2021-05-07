@@ -10,10 +10,6 @@ function enterFullscreen() {
 function exitFullscreen() {
   document.documentElement.exitFullscreen();
 }
-  
-document.getElementById("input1").addEventListener("input", () => {
-  document.getElementById("status").innerHTML = window.innerHeigh;
-});
 </script>
 </head>
 <body>
@@ -24,5 +20,10 @@ document.getElementById("input1").addEventListener("input", () => {
   <button onclick="exitFullscreen()">Exit Fullscreen</botton>
   <span id="status"></span>
 </div>
+  <script>
+    document.getElementById("input1").addEventListener("input", () => {
+      document.getElementById("status").innerHTML = window.innerHeigh;
+    });
+  </script>
 </body>
 </html>
