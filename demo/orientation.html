@@ -4,7 +4,7 @@
 <script>
 function lock() {
   if (window.screen.msLockOrientation) {
-    window.screen.msLockOrientation();
+    window.screen.msLockOrientation("portrait-primary");
     document.getElementById("state").innerText = window.screen.msOrientation;
     return;
   }
