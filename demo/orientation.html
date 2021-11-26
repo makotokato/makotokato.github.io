@@ -3,6 +3,11 @@
 <head>
 <script>
 function lock() {
+  if (window.screen.msLockOrientation) {
+    window.screen.msLockOrientation();
+    document.getElementById("state").innerText = window.screen.msOrientation;
+    return;
+  }
   let elm = document.documentElement;
   elm.requestFullscreen().then(() => {
     window.screen.orientation.lock("portrait-primary").then(() => {
@@ -12,6 +17,11 @@ function lock() {
 }
 
 function unlock() {
+  if (window.screen.msUnlockOrientation) {
+    window.screen.msUnlockOrientation();
+    document.getElementById("state").innerText = window.screen.msOrientation;
+    return;
+  }
   if (document.fullscreenElement) {
     document.exitFullscreen().then(() => {
       window.screen.orientation.unlock();
