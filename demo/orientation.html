@@ -3,12 +3,13 @@
 <head>
 <script>
 function lock() {
+  let elm = document.documentElement;
   if (window.screen.msLockOrientation) {
+    elm.msRequestFullscreen();
     window.screen.msLockOrientation("portrait-primary");
     document.getElementById("state").innerText = window.screen.msOrientation;
     return;
   }
-  let elm = document.documentElement;
   elm.requestFullscreen().then(function() {
     window.screen.orientation.lock("portrait-primary").then(function() {
       document.getElementById("state").innerText = window.screen.orientation.type;
@@ -18,6 +19,7 @@ function lock() {
 
 function unlock() {
   if (window.screen.msUnlockOrientation) {
+    document.msExitFullscreen();
     window.screen.msUnlockOrientation();
     document.getElementById("state").innerText = window.screen.msOrientation;
     return;
