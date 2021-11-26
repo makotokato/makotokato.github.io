@@ -4,6 +4,8 @@
 <script>
 async function lock() {
   try {
+    let elm = document.documentElement;
+    await elm.requestFullscreen();
     await window.screen.orientation.lock("portrait-primary");
   } catch (e) {
     console.log(e);
@@ -11,7 +13,10 @@ async function lock() {
   document.getElementById("state").innerText = window.screen.orientation.type;
 }
 
-function unlock() {
+async function unlock() {
+  if (document.fullscreenElement) {
+    await document.exitFullscreen();
+  }
   window.screen.orientation.unlock();
   document.getElementById("state").innerText = window.screen.orientation.type;
 }
