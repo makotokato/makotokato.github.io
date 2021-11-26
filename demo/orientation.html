@@ -4,6 +4,7 @@
 <script>
 function lock() {
   document.getElementById("state").innerText = window.screen.orientation.type;
+  document.getElementById("error").innerText = "";
 
   let elm = document.documentElement;
   if (window.screen.msLockOrientation) {
