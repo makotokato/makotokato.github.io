@@ -9,8 +9,8 @@ function lock() {
     return;
   }
   let elm = document.documentElement;
-  elm.requestFullscreen().then(() => {
-    window.screen.orientation.lock("portrait-primary").then(() => {
+  elm.requestFullscreen().then(function() {
+    window.screen.orientation.lock("portrait-primary").then(function() {
       document.getElementById("state").innerText = window.screen.orientation.type;
     })
   });
@@ -23,7 +23,7 @@ function unlock() {
     return;
   }
   if (document.fullscreenElement) {
-    document.exitFullscreen().then(() => {
+    document.exitFullscreen().then(function() {
       window.screen.orientation.unlock();
       document.getElementById("state").innerText = window.screen.orientation.type;
     });
