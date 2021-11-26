@@ -3,11 +3,13 @@
 <head>
 <script>
 function lock() {
+  document.getElementById("state").innerText = window.screen.orientation.type;
+
   let elm = document.documentElement;
   if (window.screen.msLockOrientation) {
     elm.msRequestFullscreen();
     if (!window.screen.msLockOrientation("portrait-primary")) {
-      document.getElementById("state").innerText = "X " + window.screen.msOrientation;
+      document.getElementById("error").innerText = "LockOrientation failure";
       return;
     }
     document.getElementById("state").innerText = window.screen.msOrientation;
@@ -16,6 +18,8 @@ function lock() {
   elm.requestFullscreen().then(function() {
     window.screen.orientation.lock("portrait-primary").then(function() {
       document.getElementById("state").innerText = window.screen.orientation.type;
+    }, function(e) {
+      document.getElementById("error").innerText = "LockOrientation failure: " + e;
     })
   });
 }
@@ -40,5 +44,6 @@ function unlock() {
   <button onclick="lock()">lock</button>
   <button onclick="unlock()">unlock</button>
   <div id="state"></div>
+  <div id="error"></div>
 </body>
 </html>
