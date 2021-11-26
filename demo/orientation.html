@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+async function lock() {
+  try {
+    await window.screen.orientation.lock("portait-primary");
+  } catch (e) {
+    console.log(e);
+  }
+  document.getElementById("state").innerText = window.screen.orientation.type;
+}
+
+function unlock() {
+  window.screen.orientation.unlock();
+  document.getElementById("state").innerText = window.screen.orientation.type;
+}
+<body>
+<button onclick="lock()">lock</button>
+<button onclick="unlock()">unlock</button>
+<div id="state"></div>
+</body>
+</html>
