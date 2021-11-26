@@ -6,7 +6,10 @@ function lock() {
   let elm = document.documentElement;
   if (window.screen.msLockOrientation) {
     elm.msRequestFullscreen();
-    window.screen.msLockOrientation("portrait-primary");
+    if (!window.screen.msLockOrientation("portrait-primary")) {
+      document.getElementById("state").innerText = "X " + window.screen.msOrientation;
+      return;
+    }
     document.getElementById("state").innerText = window.screen.msOrientation;
     return;
   }
