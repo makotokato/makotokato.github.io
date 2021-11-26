@@ -2,23 +2,22 @@
 <html>
 <head>
 <script>
-async function lock() {
-  try {
-    let elm = document.documentElement;
-    await elm.requestFullscreen();
-    await window.screen.orientation.lock("portrait-primary");
-  } catch (e) {
-    console.log(e);
-  }
-  document.getElementById("state").innerText = window.screen.orientation.type;
+function lock() {
+  let elm = document.documentElement;
+  elm.requestFullscreen().then(() => {
+    window.screen.orientation.lock("portrait-primary").then(() => {
+      document.getElementById("state").innerText = window.screen.orientation.type;
+    })
+  });
 }
 
-async function unlock() {
+function unlock() {
   if (document.fullscreenElement) {
-    await document.exitFullscreen();
+    document.exitFullscreen().then(() => {
+      window.screen.orientation.unlock();
+      document.getElementById("state").innerText = window.screen.orientation.type;
+    });
   }
-  window.screen.orientation.unlock();
-  document.getElementById("state").innerText = window.screen.orientation.type;
 }
 </script>
 </head>
