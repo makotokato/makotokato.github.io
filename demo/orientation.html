@@ -29,6 +29,8 @@ function lock() {
 }
 
 function unlock() {
+  document.getElementById("error").innerText = "";
+
   if (window.screen.msUnlockOrientation) {
     document.msExitFullscreen();
     window.screen.msUnlockOrientation();
