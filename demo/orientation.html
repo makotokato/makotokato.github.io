@@ -20,7 +20,7 @@ function lock() {
   
   document.getElementById("state").innerText = window.screen.orientation.type;
   elm.requestFullscreen().then(function() {
-    window.screen.orientation.lock("primary").then(function() {
+    window.screen.orientation.lock("portrait").then(function() {
       document.getElementById("state").innerText = window.screen.orientation.type;
     }, function(e) {
       document.getElementById("error").innerText = "LockOrientation failure: " + e;
