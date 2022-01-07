@@ -24,6 +24,7 @@ function lock() {
       document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
     }, function(e) {
       document.getElementById("error").innerText = "LockOrientation failure: " + e;
+      document.exitFullscreen();
     })
   });
 }
