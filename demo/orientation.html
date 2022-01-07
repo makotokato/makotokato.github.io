@@ -45,6 +45,10 @@ function unlock() {
     });
   }
 }
+  
+window.screen.orientation.addEventListener('change', e => {
+  document.getElementById("state").innerText = "changed event: " + window.screen.orientation.type;
+});
 </script>
 </head>
 <body>
