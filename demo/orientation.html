@@ -47,7 +47,7 @@ function unlock() {
 }
   
 window.screen.orientation.addEventListener('change', e => {
-  document.getElementById("state").innerText = "changed event: " + window.screen.orientation.type;
+  document.getElementById("state").innerText = "changed event: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
 });
 </script>
 </head>
