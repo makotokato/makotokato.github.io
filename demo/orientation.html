@@ -18,10 +18,10 @@ function lock() {
     return;
   }
   
-  document.getElementById("state").innerText = window.screen.orientation.type;
+  document.getElementById("state").innerText = "During LockOrientation: type = " + window.screen.orientation.type;
   elm.requestFullscreen().then(function() {
     window.screen.orientation.lock("portrait").then(function() {
-      document.getElementById("state").innerText = window.screen.orientation.type;
+      document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
     }, function(e) {
       document.getElementById("error").innerText = "LockOrientation failure: " + e;
     })
