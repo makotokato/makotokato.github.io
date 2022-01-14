@@ -1,0 +1,45 @@
+<!--
+  >!==
+  Motionly
+  ==
+  Copyright (C) 2016 - 2020 KoppaSoft
+  ==
+  The code hereby is the private full property of the KoppaSoft company, Paris, France.
+  You have no right to re-use or modify it. There are no open-source, nor free license
+  attached to it!
+  Web site: http://www.koppasoft.com
+  ==<
+  -->
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="copyright" content="KoppaSoft"/>
+  <meta name="author" content="KoppaSoft"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Lock screen orientation</title>
+</head>
+<body>
+
+<div id="container">
+<button id="button">Lock to portrait</button>
+</div>
+
+<script type="text/javascript">
+
+  document.querySelector("#button").addEventListener("click", async function ()
+  {
+    await document.querySelector("#container").requestFullscreen();
+    screen.orientation.lock("portrait-primary")
+      .catch(function (error)
+      {
+        console.error(error);
+        alert(error);
+      });
+  });
+
+</script>
+
+</body>
+</html>
