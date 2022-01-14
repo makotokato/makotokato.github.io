@@ -5,12 +5,13 @@
 <script>
 function lock() {
   document.getElementById("error").innerText = "";
+  let orientation = document.getElementById("orientation").value; 
 
   let elm = document.documentElement;
   if (window.screen.msLockOrientation) {
     document.getElementById("state").innerText = window.screen.msOrientation;
     elm.msRequestFullscreen();
-    if (!window.screen.msLockOrientation("portrait-primary")) {
+    if (!window.screen.msLockOrientation(orientation)) {
       document.getElementById("error").innerText = "LockOrientation failure";
       return;
     }
@@ -20,7 +21,7 @@ function lock() {
   
   document.getElementById("state").innerText = "During LockOrientation: type = " + window.screen.orientation.type;
   elm.requestFullscreen().then(function() {
-    window.screen.orientation.lock("portrait").then(function() {
+    window.screen.orientation.lock(orientation).then(function() {
       document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
     }, function(e) {
       document.getElementById("error").innerText = "LockOrientation failure: " + e;
@@ -54,6 +55,15 @@ if (window.screen.orientation) {
 </script>
 </head>
 <body>
+  <select id="orientation">
+    <option value="portrait">portrait</option>
+    <option value="portrait-primary">portrait-primary</option>
+    <option value="portrait-secondary">portrait-secondary</option>
+    <option value="landscape">landscape</option>
+    <option value="landscape-primary">landscape-primary</option>
+    <option value="landscape-secondary">landscape-secondary</option>
+    <option value="any">any</option>
+  </select>
   <button onclick="lock()">lock</button>
   <button onclick="unlock()">unlock</button>
   <div id="state"></div>
