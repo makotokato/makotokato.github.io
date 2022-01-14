@@ -19,7 +19,7 @@ function lock() {
     return;
   }
   
-  document.getElementById("state").innerText = "During LockOrientation: type = " + window.screen.orientation.type;
+  document.getElementById("state").innerText = "During LockOrientation to " + orientation + ": current orientation type = " + window.screen.orientation.type;
   elm.requestFullscreen().then(function() {
     window.screen.orientation.lock(orientation).then(function() {
       document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
