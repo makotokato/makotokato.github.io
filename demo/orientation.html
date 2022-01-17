@@ -49,7 +49,7 @@ function unlock() {
   
 if (window.screen.orientation) {  
   window.screen.orientation.addEventListener('change', function (e) {
-    document.getElementById("state").innerText = "changed event: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
+    document.getElementById("type").innerText = "changed event: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
   });
 }
 </script>
@@ -62,11 +62,13 @@ if (window.screen.orientation) {
     <option value="landscape">landscape</option>
     <option value="landscape-primary">landscape-primary</option>
     <option value="landscape-secondary">landscape-secondary</option>
+    <option value="natural">natural</option>
     <option value="any">any</option>
   </select>
   <button onclick="lock()">lock</button>
   <button onclick="unlock()">unlock</button>
   <div id="state"></div>
+  <div id="type"></div>
   <div id="error"></div>
 </body>
 </html>
