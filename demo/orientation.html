@@ -49,9 +49,13 @@ function unlock() {
   
 if (window.screen.orientation) {  
   window.screen.orientation.addEventListener('change', function (e) {
-    document.getElementById("type").innerText = "changed event: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
+    document.getElementById("type").innerText = "change event: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
   });
 }
+
+window.addEventListener('orientationchange', function (e) {
+  document.getElementById("type2").innerText = "orientationchange event (compat): " + window.orientation;
+});
 </script>
 </head>
 <body>
@@ -69,6 +73,7 @@ if (window.screen.orientation) {
   <button onclick="unlock()">unlock</button>
   <div id="state"></div>
   <div id="type"></div>
+  <div id="type2"></div>
   <div id="error"></div>
 </body>
 </html>
