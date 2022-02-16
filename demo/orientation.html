@@ -51,8 +51,11 @@ if (window.screen.orientation) {
   window.screen.orientation.addEventListener('change', function (e) {
     document.getElementById("type").innerText = "change event: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
   });
+} else if (window.screen.msOrientation) {
+  window.screen.addEventListener('msorientationchange', function (e) {
+    document.getElementById("type").innerText = "msorientationchange event (ms prefix): " + window.screen.msOrientation;
+  });
 }
-
 window.addEventListener('orientationchange', function (e) {
   document.getElementById("type2").innerText = "orientationchange event (compat): " + window.orientation;
 });
