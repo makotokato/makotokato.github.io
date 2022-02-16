@@ -5,7 +5,7 @@
 <script>
 function lock() {
   document.getElementById("error").innerText = "";
-  let orientation = document.getElementById("orientation").value; 
+  let orientation = document.getElementById("orientationtype").value; 
 
   let elm = document.documentElement;
   if (window.screen.msLockOrientation) {
@@ -59,7 +59,7 @@ window.addEventListener('orientationchange', function (e) {
 </script>
 </head>
 <body>
-  <select id="orientation">
+  <select id="orientationtype">
     <option value="portrait">portrait</option>
     <option value="portrait-primary">portrait-primary</option>
     <option value="portrait-secondary">portrait-secondary</option>
