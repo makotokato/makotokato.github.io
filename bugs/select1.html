@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<style>
+select { width: 3em; }
+</style>
+<select>
+  <option value="">...</option>
+  <option value="v1" hidden>Value 1</option>
+  <option value="v2" hidden>Value 2</option>
+  <option value="v3" hidden>Value 3</option>
+  <option value="v4" hidden>Value 4</option>
+</select>
+<script>
+document.querySelector('select').addEventListener('focus', (event) => {
+  const elem = event.target.closest('select');
+  elem.querySelector('[value="v1"]').hidden = false;
+  elem.querySelector('[value="v2"]').hidden = false;
+});
+</script>
