@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
 function lock() {
   document.getElementById("error").innerText = "";
@@ -29,7 +29,22 @@ function lock() {
     })
   });
 }
+  
+function lockNoWait() {
+  document.getElementById("error").innerText = "";
+  let orientation = document.getElementById("orientationtype").value; 
 
+  let elm = document.documentElement;
+  document.getElementById("state").innerText = "During LockOrientation to " + orientation + ": current orientation type = " + window.screen.orientation.type;
+  elm.requestFullscreen()
+  window.screen.orientation.lock(orientation).then(function() {
+    document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
+  }, function(e) {
+    document.getElementById("error").innerText = "LockOrientation failure: " + e;
+    document.exitFullscreen();
+  });
+}
+  
 function unlock() {
   document.getElementById("error").innerText = "";
 
@@ -71,8 +86,9 @@ window.addEventListener('orientationchange', function (e) {
     <option value="landscape-secondary">landscape-secondary</option>
     <option value="natural">natural</option>
     <option value="any">any</option>
-  </select>
-  <button onclick="lock()">lock</button>
+  </select><br>
+  <button onclick="lock()">lock after fullscreen</button>
+  <button onclick="lockNoWait()">lock without waiting fullscreen</button>
   <button onclick="unlock()">unlock</button>
   <div id="state"></div>
   <div id="type"></div>
