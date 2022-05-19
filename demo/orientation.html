@@ -36,7 +36,7 @@ function lockNoWait() {
 
   let elm = document.documentElement;
   document.getElementById("state").innerText = "During LockOrientation to " + orientation + ": current orientation type = " + window.screen.orientation.type;
-  elm.requestFullscreen()
+  elm.requestFullscreen();
   window.screen.orientation.lock(orientation).then(function() {
     document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
   }, function(e) {
