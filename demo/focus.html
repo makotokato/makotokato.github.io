@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+<body>
+  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=953169">CrBug</a><br>
+  <a href="https://bugs.webkit.org/show_bug.cgi?id=236584">WebKit bug</a><br>
+  <button onclick="focusinput1()">w/ preventScroll</button>
+  <button onclick="focusinput2()">w/o preventScroll</button>
+  
+<div style="height: 4000px"></div>
+<input type="text" id="input1">
+<script>
+function focusinput1() {
+	let input1 = document.getElementById("input1");
+	input1.focus({preventScroll: true});
+}
+function focusinput2() {
+	let input1 = document.getElementById("input1");
+	input1.focus();
+}
+</script>
+</body>
+</html>
