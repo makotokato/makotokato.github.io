@@ -87,6 +87,7 @@ function lock2() {
     document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
   }, () => {
     document.getElementById("error").innerText = "LockOrientation failure";
+    document.getElementById("tryfullscreen").display = "block";
   });
 }
 </script>
