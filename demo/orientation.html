@@ -84,7 +84,7 @@ function lock2() {
   var element = document.querySelector("div");
   element.requestFullscreen();
   element.remove();
-  window.screen.orientation.lock("any").then(() => {
+  window.screen.orientation.lock("portrait").then(() => {
     document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
   }, () => {
     document.getElementById("error").innerText = "LockOrientation failure";
