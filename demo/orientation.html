@@ -81,13 +81,16 @@ window.addEventListener('orientationchange', function (e) {
 });
 
 function lock2() {
-  document.getElementById("tryfullscreen").requestFullscreen();
-  document.getElementById("tryfullscreen").display = "none";
+  var element = document.querySelector("div");
+  element.requestFullscreen();
+  element.remove();
   window.screen.orientation.lock("any").then(() => {
     document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
   }, () => {
     document.getElementById("error").innerText = "LockOrientation failure";
-    document.getElementById("tryfullscreen").display = "block";
+    var newElement = Document.createElement("div");
+    newElement.innerHTML = "sample text";
+    document.querySelector("body").appendChild(newElement);
   });
 }
 </script>
