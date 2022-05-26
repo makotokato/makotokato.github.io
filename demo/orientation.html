@@ -79,9 +79,20 @@ if (window.screen.orientation) {
 window.addEventListener('orientationchange', function (e) {
   document.getElementById("type2").innerText = "orientationchange event (compat): " + window.orientation;
 });
+  
+document.getElementById("tryfullscreen").addEventListener("click" => {
+  document.getElementById("tryfullscreen").requestFullscreen();
+  document.getElementById("tryfullscreen").display = "none";
+  window.screen.orientation.lock("any").then(() => {
+    document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
+  }, () => {
+    document.getElementById("error").innerText = "LockOrientation failure";
+  });
+});
 </script>
 </head>
 <body>
+  <div id="tryfullscreen">sample text</div>
   <select id="orientationtype">
     <option value="portrait">portrait</option>
     <option value="portrait-primary">portrait-primary</option>
