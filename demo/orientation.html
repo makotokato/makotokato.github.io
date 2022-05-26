@@ -79,8 +79,8 @@ if (window.screen.orientation) {
 window.addEventListener('orientationchange', function (e) {
   document.getElementById("type2").innerText = "orientationchange event (compat): " + window.orientation;
 });
-  
-document.getElementById("tryfullscreen").addEventListener("click" => {
+
+function lock2() {
   document.getElementById("tryfullscreen").requestFullscreen();
   document.getElementById("tryfullscreen").display = "none";
   window.screen.orientation.lock("any").then(() => {
@@ -88,7 +88,7 @@ document.getElementById("tryfullscreen").addEventListener("click" => {
   }, () => {
     document.getElementById("error").innerText = "LockOrientation failure";
   });
-});
+}
 </script>
 </head>
 <body>
@@ -106,6 +106,7 @@ document.getElementById("tryfullscreen").addEventListener("click" => {
   <button onclick="lock()">lock after fullscreen</button><br>
   <button onclick="lockNoWait()">lock without waiting fullscreen</button><br>
   <button onclick="unlock()">unlock</button><br>
+  <button onclick="lock2()">lock2</button><br>
   <div id="state"></div>
   <div id="type"></div>
   <div id="type2"></div>
