@@ -86,7 +86,11 @@ window.addEventListener('orientationchange', function (e) {
 
 function lockAfterCanelFullscreen() {
   var element = document.querySelector("div");
+  if (!element) {
+    return;
+  }
   element.requestFullscreen().then(function () {
+    document.getElementById("state").innerHTML = "fullscreen is successful";
   }, function(e) {
     document.getElementById("error").innerHTML = "fullscreen is rejected: " + e;
   });
@@ -94,17 +98,9 @@ function lockAfterCanelFullscreen() {
   
   window.screen.orientation.lock("portrait").then(function () {
     document.getElementById("state").innerHTML += "<br>LockOrientation successful: type = " + window.screen.orientation.type;
-    document.getElementById("error").innerHTML += "success?";
-
-    var newElement = document.createElement("div");
-    newElement.innerHTML = "sample text";
-    document.querySelector("body").appendChild(newElement);
+    document.getElementById("error").innerHTML += "<br>LockOrientation is successful";
   }, function() {
-    document.getElementById("error").innerHTML += "<br>LockOrientation failure";
-    
-    var newElement = document.createElement("div");
-    newElement.innerHTML = "sample text";
-    document.querySelector("body").appendChild(newElement);
+    document.getElementById("error").innerHTML += "<br>LockOrientation failure";  
   });
 }
 </script>
