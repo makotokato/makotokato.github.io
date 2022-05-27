@@ -80,14 +80,24 @@ window.addEventListener('orientationchange', function (e) {
   document.getElementById("type2").innerText = "orientationchange event (compat): " + window.orientation;
 });
 
-function lock2() {
+function lockAfterCanelFullscreen() {
   var element = document.querySelector("div");
+  element.addEventListner("fullscreenerror", function(e) {
+    document.getElementById("error").innerHTML = "Receive fullscreenerror: " + e;
+  }, { once: true });
   element.requestFullscreen();
   element.remove();
+  
   window.screen.orientation.lock("portrait").then(() => {
-    document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
+    document.getElementById("state").innerText = "<br>LockOrientation successful: type = " + window.screen.orientation.type;
+    document.getElementById("error").innerHTML += "success?";
+
+    var newElement = document.createElement("div");
+    newElement.innerHTML = "sample text";
+    document.querySelector("body").appendChild(newElement);
   }, () => {
-    document.getElementById("error").innerText = "LockOrientation failure";
+    document.getElementById("error").innerHTML += "<br>LockOrientation failure";
+    
     var newElement = document.createElement("div");
     newElement.innerHTML = "sample text";
     document.querySelector("body").appendChild(newElement);
@@ -110,7 +120,7 @@ function lock2() {
   <button onclick="lock()">lock after fullscreen</button><br>
   <button onclick="lockNoWait()">lock without waiting fullscreen</button><br>
   <button onclick="unlock()">unlock</button><br>
-  <button onclick="lock2()">lock2</button><br>
+  <button onclick="lockAfterCanelFullscreen()">lock after canel fullscreen</button><br>
   <div id="state"></div>
   <div id="type"></div>
   <div id="type2"></div>
