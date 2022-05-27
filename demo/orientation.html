@@ -38,7 +38,11 @@ function lockNoWait() {
 
   let elm = document.documentElement;
   document.getElementById("state").innerText = "During LockOrientation to " + orientation + ": current orientation type = " + window.screen.orientation.type;
-  elm.requestFullscreen();
+  elm.requestFullscreen().then(function() {
+    document.getElementById("state").innerText = "Entered fullscreen";
+  }, function(e) {
+    document.getElementById("error").innerText = "Cancel fullscreen: " + e;
+  });
   window.screen.orientation.lock(orientation).then(function() {
     document.getElementById("state").innerText = "LockOrientation successful: type = " + window.screen.orientation.type;
   }, function(e) {
@@ -88,14 +92,14 @@ function lockAfterCanelFullscreen() {
   element.requestFullscreen();
   element.remove();
   
-  window.screen.orientation.lock("portrait").then(() => {
+  window.screen.orientation.lock("portrait").then(function () {
     document.getElementById("state").innerText = "<br>LockOrientation successful: type = " + window.screen.orientation.type;
     document.getElementById("error").innerHTML += "success?";
 
     var newElement = document.createElement("div");
     newElement.innerHTML = "sample text";
     document.querySelector("body").appendChild(newElement);
-  }, () => {
+  }, function() {
     document.getElementById("error").innerHTML += "<br>LockOrientation failure";
     
     var newElement = document.createElement("div");
