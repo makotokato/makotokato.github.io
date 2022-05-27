@@ -82,7 +82,7 @@ window.addEventListener('orientationchange', function (e) {
 
 function lockAfterCanelFullscreen() {
   var element = document.querySelector("div");
-  element.addEventListner("fullscreenerror", function(e) {
+  element.addEventListener("fullscreenerror", function(e) {
     document.getElementById("error").innerHTML = "Receive fullscreenerror: " + e;
   }, { once: true });
   element.requestFullscreen();
