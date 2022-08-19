@@ -5,7 +5,7 @@
 <script>
 navigator.geolocation.watchPosition(
   (pos) => {
-    document.getElementById("log").innerHTML = "<pre>latitude: " + pos.coords.latitude + "<br>longitude: " + pos.coords.longitude + "<br>accuracy: " + pos.coords.accuracy + "</pre>";
+    document.getElementById("log").innerHTML += "<div>lat: " + pos.coords.latitude + ", lon: " + pos.coords.longitude + ", acc: " + pos.coords.accuracy + "</div>";
   },
   (e) => {},
   { enableHighAccuracy: true }
