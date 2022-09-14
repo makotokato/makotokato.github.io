@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+function enterFullscreenWithShow() {
+  document.documentElement.requestFullscreen({ navigationUI: "show" });
+}
+  
+function enterFullscreenWithHide() {
+  document.documentElement.requestFullscreen({ navigationUI: "hide" });
+}
+
+
+function exitFullscreen() {
+  document.documentElement.exitFullscreen();
+}
+  
+function updateStatus() {
+  document.getElementById("status").innerHTML = "InnerHeight: " + window.innerHeight;
+  window.setTimeout(updateStatus, 5 * 1000);
+}
+</script>
+</head>
+<body>
+<div>
+  <input id="input1"><br>
+  <textarea></textarea>
+  <button onclick="enterFullscreenWithShow()">Fullscreen(show)</button>
+  <button onclick="enterFullscreenWithHide()">Fullscreen(hide)</button>
+  <button onclick="exitFullscreen()">Exit Fullscreen</button>
+  <span id="status"></span>
+</div>
+  <script>
+    updateStatus(); 
+  </script>
+</body>
+</html>
