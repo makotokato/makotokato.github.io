@@ -2,11 +2,22 @@
 <html>
   <head>
     <meta name=”viewport” content=”width=device-width,initial-scale=2″>
+    <script>
+function enterFullscreen() {
+  document.documentElement.requestFullscreen();
+}
+
+function exitFullscreen() {
+  document.documentElement.exitFullscreen();
+}
+    </script>
   </head>
   <body>
     <form action="./validation.html" method="post">
       <input type="text" required>
       <input type="submit">
     </form>
+  <button onclick="enterFullscreen()">Fullscreen</button>
+  <button onclick="exitFullscreen()">Exit Fullscreen</button>
   </body>
 </html>
