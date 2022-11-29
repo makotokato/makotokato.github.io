@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta name=”viewport” content=”width=device-width,initial-scale=1″>
+  </head>
+  <body>
+<div id="log"></div>
+    <script>
+      document.addEventListener("visibilitychange", () => {
+        document.getElementById("log").innerHTML +=
+            "<span>" + new Date() + "</span><span>: " + document.visibilityState + "</span><br>";
+      });
+    </script>
+
+  </body>
+</html>
