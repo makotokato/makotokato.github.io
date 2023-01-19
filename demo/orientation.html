@@ -103,9 +103,13 @@ function lockAfterCanelFullscreen() {
     document.getElementById("error").innerHTML += "<br>LockOrientation failure";  
   });
 }
+
+function init() {
+  document.getElementById("type").innerText = "init: " + window.screen.orientation.type + ", " + window.screen.orientation.angle;
+}
 </script>
 </head>
-<body>
+<body onload="init()">
   <div id="tryfullscreen">sample text</div>
   <select id="orientationtype">
     <option value="portrait">portrait</option>
