@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+async function fullscreen() {
+  document.getElementById("status").innerText = "";
+  await document.documentElement.requestFullscreen();
+  await document.getElementById("iframe1").contentWindow.screen.orientation.lock("any"orientation);
+  document.getElementById("status").innerText = "OK";
+}
+
+async function exitfullscreen() {
+  await document.exitFullscreen();
+}
+</script>
+</head>
+<body>
+<div id="status"></div>
+<iframe id="iframe1" src="orientation.html"></iframe><br>
+<button onclick="fullscreen()">enter full screen</button>
+<button onclick="eixtfullscreen()">exit full screen</button>
+</body>
+</html>
