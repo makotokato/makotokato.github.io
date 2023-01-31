@@ -6,7 +6,7 @@
 async function fullscreen() {
   document.getElementById("status").innerText = "";
   await document.documentElement.requestFullscreen();
-  await document.getElementById("iframe1").contentWindow.screen.orientation.lock("any"orientation);
+  await document.getElementById("iframe1").contentWindow.screen.orientation.lock("any");
   document.getElementById("status").innerText = "OK";
 }
 
