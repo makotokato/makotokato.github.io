@@ -17,7 +17,7 @@
     <script>
       window.setTimeout(() => {
         let log = document.getElementById("log");
-        log.innerText = new Data();
+        log.innerText = new Date();
         navigator.wakeLock.request("screen").then(sentinel => {
           log.innerText = "success";
           window.setTimeout(() => {
