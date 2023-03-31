@@ -19,9 +19,9 @@
         let log = document.getElementById("log");
         log.innerText = new Date();
         navigator.wakeLock.request("screen").then(sentinel => {
-          log.innerText = "success";
+          log.innerText = "lock";
           window.setTimeout(() => {
-            sentinel.release();
+            sentinel.release().then(() => { log.innerText = "unlock"; });
           }, 5000);
         }).catch(e => {
             log.innerText = e;
