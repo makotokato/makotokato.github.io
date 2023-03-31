@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+    function wakeLock() {
+      navigator.wakeLock.request("screen").then(sentinel => {
+        log.innerText = "success";
+        window.setTimeout(() => {
+          sentinel.release();
+        }, 5000);
+      });
+    }
+    </script>
+  </head>
+  <body>
+    <div id="log"></div>
+    <script>
+      window.setTimeout(() => {
+        let log = document.getElementById("log");
+        log.innerText = new Data();
+        navigator.wakeLock.request("screen").then(sentinel => {
+          log.innerText = "success";
+          window.setTimeout(() => {
+            sentinel.release();
+          }, 5000);
+        }).catch(e => {
+            log.innerText = e;
+        });
+      }, 5000);
+    </script>
+    <button onclick="wakeLock()">wake lock</button>
+  </body>
+</html>
