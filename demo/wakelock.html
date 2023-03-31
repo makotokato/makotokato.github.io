@@ -4,9 +4,9 @@
     <script>
     function wakeLock() {
       navigator.wakeLock.request("screen").then(sentinel => {
-        log.innerText = "success";
+        log.innerText = "lock";
         window.setTimeout(() => {
-          sentinel.release();
+          sentinel.release().then(() => { log.innerText = "unlock"; });
         }, 5000);
       });
     }
