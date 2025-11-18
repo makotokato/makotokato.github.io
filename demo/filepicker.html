@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("filepicker").addEventListener(
+    "change",
+    async (event) => {
+      document.getElementById("name").innerText = document.getElementById("filepicker").value;
+
+      let output = document.getElementById("listing");
+      output.innerHTML = "";
+
+      for (const file of event.target.files) {
+        let item = document.createElement("li");
+        item.textContent = file.name +  " (" + file.webkitRelativePath + ") " + new Date(file.lastModified);
+        if (file.size < 16) {
+          output.appendChild(item);
+          continue;
+        }
+        let byte = await file.bytes();
+        item.textContent += " " + byte[0] + " " + byte[1] + " " + byte[2] + " " + byte[3];
+        output.appendChild(item);
+      }
+    },
+  );
+
+  document.getElementById("filepicker1").addEventListener(
+    "change",
+    event => {
+      document.getElementById("name").innerText = document.getElementById("filepicker1").value;
+
+      let output = document.getElementById("listing");
+      output.innerHTML = "";
+
+      for (const file of event.target.files) {
+        let item = document.createElement("li");
+        item.textContent = file.name +  " (" + file.webkitRelativePath + ") " + new Date(file.lastModified);
+        output.appendChild(item);
+      }
+    },
+  );
+  
+  document.getElementById("filepicker2").addEventListener(
+    "change",
+    event => {
+      document.getElementById("name").innerText = document.getElementById("filepicker2").value;
+    },
+  );
+
+  document.getElementById("filepicker3").addEventListener(
+    "change",
+    event => {
+      document.getElementById("name").innerText = document.getElementById("filepicker3").value;
+
+      let output = document.getElementById("listing");
+      output.innerHTML = "";
+
+      console.log(event.target.webkitEntries)
+
+      for (const file of event.target.webkitEntries) {
+        let item = document.createElement("li");
+        item.textContent = file.fullPath;
+        output.appendChild(item);
+      }
+    },
+  );
+});
+</script>
+</head>
+<body>
+<span>webkitdir: </span><input type="file" id="filepicker" webkitdirectory multiple /><br>
+<span>multiple: </span><input type="file" id="filepicker1" multiple /><br>
+<span>normal: </span><input type="file" id="filepicker2" /><br>
+<span>multiple+webkitEntries: </span><input type="file" id="filepicker3" multiple /><br>
+<div id="log"></div>
+<div id="name"></div>
+<ul id="listing"></ul>
+</body>
+</html>
