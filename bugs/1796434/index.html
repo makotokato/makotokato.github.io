@@ -21,9 +21,20 @@
     background-color: green;
   }
 }
+@media all and (display-mode: minimal-ui) {
+  body {
+    background-color: yellow;
+  }
+}
 </style>
+  <script>
+function fullscreen() {
+  document.requestFullscreen();
+}
+  </script>
 </head>
 <body>
-PWA test 2
+PWA test 2<br>
+<button onclick="fullscreen()">Enter fullscreen</button>  
 </body>
 </html>
