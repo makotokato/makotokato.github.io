@@ -9,12 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!e.getModifierState("Control")) {
       return;
     }
-    if (e.keyCode == 82) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
-    if (e.code == "BracketRight" || e.code == "BracketLeft") {
+    if (e.code == "BracketRight" ||
+        e.code == "BracketLeft" ||
+        e.code == "KeyN" ||
+        e.code == "KeyP" ||
+        e.code == "KeyR" ||
+        e.code == "KeyT" ||
+        e.code == "KeyW") {
       e.preventDefault();
       e.stopPropagation();
       return;
