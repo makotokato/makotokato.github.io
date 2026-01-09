@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
       e.stopPropagation();
       return;
     }
+    if (e.code == "BracketRight" || e.code == "BracketLeft") {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
   });
 }, { once: true });
   </script>
