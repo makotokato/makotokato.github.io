@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener('keydown', e => {
+    if (!e.getModifierState("Control")) {
+      return;
+    }
+    if (e.keyCode == 82) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+  });
+}, { once: true });
+  </script>
+<body>
+<script>
+</script>
+</body>
+</html>
