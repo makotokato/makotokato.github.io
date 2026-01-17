@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=overlays-content">
+<style>
+#target {
+  margin-top: env(keyboard-inset-top);
+  margin-left: env(keyboard-inset-left);
+  margin-bottom: env(keyboard-inset-bottom);
+  margin-right: env(keyboard-inset-right);
+}
+</style>
+</head>
+<body onload="refresh()">
+<p id="target"></p>
+<div id="result"></div>
+<div id="windowResult"></div>
+<div id="screenResult"></div>
+<button id="button1">enable overlay content</button><br>
+<input type="text" id="text"><br>
+<script>
+function refresh() {
+  let element = document.getElementById("target");
+  let style = window.getComputedStyle(element);
+  let result = document.getElementById("result");
+  result.innerText = "keyboard-inset (" + style.getPropertyValue('margin-left') + ", " + style.getPropertyValue('margin-top') + ") - (" +
+  style.getPropertyValue('margin-right') + ", " + style.getPropertyValue('margin-bottom') + ")";
+
+  let screenResult = document.getElementById("screenResult");
+  screenResult.innerText = "screen (" + screen.width + ", " + screen.height + ")";
+  let windowResult = document.getElementById("windowResult");
+  windowResult.innerHTML = "window inner (" + window.innerWidth + ", " + window.innerHeight + "),<br>outer (" + window.outerWidth + ", " + window.outerHeight + ")" ;
+}
+
+function enableOverlay(enable) {
+  navigator.virtualKeyboard.overlaysContent = enable;
+}
+
+document.getElementById("text").addEventListener("input", refresh);
+document.getElementById("text").addEventListener("focus", () => { window.setTimeout(refresh, 1000) });
+document.getElementById("text").addEventListener("blur", () => { window.setTimeout(refresh, 1000) });
+document.getElementById("button1").addEventListener("click", () => { enableOverlay(true); });
+</script>
+</body>
