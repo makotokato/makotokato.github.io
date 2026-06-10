@@ -5,7 +5,7 @@
 var last_time = 0;    
 document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("deviceorientation", event => {
-    let new_time = Performance.now();
+    let new_time = performance.now();
     console.log(`${event.alpha} : ${event.beta} : ${event.gamma}`);
     document.getElementById("log").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma} -> duration : ${new_time - last_time}`;
     last_time = new_time;
