@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   var last_motion_time = 0;
   window.addEventListener("devicemotion", event => {
     let new_time = event.timeStamp;
-    document.getElementById("log2").innerHTML = `duration : ${new_time - last_motion_time}`;
+    document.getElementById("log2").innerHTML = `${event.acceleration.x} : ${event.acceleration.y} : ${event.acceleration.z} -> duration : ${new_time - last_motion_time}`;
     last_motion_time = new_time;
   });
 });
@@ -38,6 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
   <div><span>deviceorientation: </span><span id="log1"></span></div>
   <div id="max"></div>
   <div id="min"></div>
-  <div><span>deviceorientation: </span><span id="log2"></span></div>
+  <div><span>devicemotion: </span><span id="log2"></span></div>
   </body>
 </html>
