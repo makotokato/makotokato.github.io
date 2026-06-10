@@ -2,12 +2,27 @@
 <html>
   <head>
   <script>
-var last_time = 0;    
+var last_time = 0;
+var min_duration = 10000;
+var max_duration = 10000;
+
 document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("deviceorientation", event => {
-    let new_time = performance.now();
+    let new_time = event.timeStamp;
+    let duration = new_time - last_time;
     console.log(`${event.alpha} : ${event.beta} : ${event.gamma}`);
     document.getElementById("log").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma} -> duration : ${new_time - last_time}`;
+
+    if (min_duration > duration) {
+      min_duration = duration;
+    }
+    if (max_duration < duration) {
+      max_duration = duration;
+    }
+
+    document.getElementById("max").innerHTML = `max: ${max_duration}`;
+    document.getElementById("min").innerHTML = `min: ${min_duration}`;
+    
     last_time = new_time;
   });
 });
@@ -15,5 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </head>
   <body>
   <div id="log"></div>
+  <div id="max"></div>
+  <div id="min"></div>
   </body>
 </html>
