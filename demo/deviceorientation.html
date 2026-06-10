@@ -31,7 +31,9 @@ function device_orientation_handler(event) {
     last_orientation_time = new_time;
 }
 
-function device_device_orientation_absolute_handler(event) {
+function device_orientation_absolute_handler(event) {
+    let duration = 0;
+    document.getElementById("log2").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}<br>duration : ${duration}`;
 }
     
 function enable_device_orientation(aEnable) {
@@ -55,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("devicemotion", event => {
     let new_time = event.timeStamp;
     let duration = new_time - last_motion_time;
-    document.getElementById("log2").innerHTML = `${event.acceleration.x} : ${event.acceleration.y} : ${event.acceleration.z}<br>duration : ${duration}`;
+    document.getElementById("log3").innerHTML = `${event.acceleration.x} : ${event.acceleration.y} : ${event.acceleration.z}<br>duration : ${duration}`;
 
     if (duration == 0) {
       zero_motion_duration_count++;
@@ -64,8 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     max_motion_duration = Math.max(max_motion_duration, duration);
 
-    document.getElementById("max2").innerHTML = `max: ${max_motion_duration}`;
-    document.getElementById("min2").innerHTML = `min: ${min_motion_duration} zero count=${zero_motion_duration_count}`;
+    document.getElementById("max3").innerHTML = `max: ${max_motion_duration}`;
+    document.getElementById("min3").innerHTML = `min: ${min_motion_duration} zero count=${zero_motion_duration_count}`;
         
     last_motion_time = new_time;
   });
@@ -81,8 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
   <div><span>deviceorientation: </span><span id="log1"></span></div>
   <div id="max1"></div>
   <div id="min1"></div>
-  <div><span>devicemotion: </span><span id="log2"></span></div>
+  <div><span>deviceorientationabsolute: </span><span id="log2"></span></div>
   <div id="max2"></div>
   <div id="min2"></div>
+  <div><span>devicemotion: </span><span id="log3"></span></div>
+  <div id="max3"></div>
+  <div id="min3"></div>
   </body>
 </html>
