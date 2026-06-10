@@ -2,33 +2,52 @@
 <html>
   <head>
   <script>
-var last_time = 0;
-var min_duration = 10000;
-var max_duration = 0;
+var last_orientation_time = 0;
+var min_orientation_duration = 10000;
+var max_orientation_duration = 0;
+var zero_orientation_duration_count = 0;
 
+var last_motion_time = 0;
+var min_motion_duration = 10000;
+var max_motion_duration = 0;
+var zero_motion_duration_count = 0;
+    
 document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("deviceorientation", event => {
     let new_time = event.timeStamp;
-    let duration = new_time - last_time;
-    document.getElementById("log1").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma} -> duration : ${new_time - last_time}`;
+    let duration = new_time - last_orientation_time;
+    document.getElementById("log1").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma} -> duration : ${duration}`;
 
-    if (min_duration > duration) {
-      min_duration = duration;
+    if (min_orientation_duration == 0) {
+      zero_orientation_duration_count++;
+    } else if (min_orientation_duration > duration) {
+      min_orientation_duration = duration;
     }
-    if (max_duration < duration) {
-      max_duration = duration;
-    }
+    max_orientation_duration = Math.max(max_orientation_duration, duration);
 
-    document.getElementById("max").innerHTML = `max: ${max_duration}`;
-    document.getElementById("min").innerHTML = `min: ${min_duration}`;
+    document.getElementById("max1").innerHTML = `max: ${max_orientation_duration}`;
+    document.getElementById("min1").innerHTML = `min: ${min_orientation_duration} zero count=${zero_orientation_duration_count}`;
     
-    last_time = new_time;
+    last_orientation_time = new_time;
   });
 
-  var last_motion_time = 0;
   window.addEventListener("devicemotion", event => {
     let new_time = event.timeStamp;
-    document.getElementById("log2").innerHTML = `${event.acceleration.x} : ${event.acceleration.y} : ${event.acceleration.z} -> duration : ${new_time - last_motion_time}`;
+    let duration = new_time - last_motion_time;
+    document.getElementById("log2").innerHTML = `${event.acceleration.x} : ${event.acceleration.y} : ${event.acceleration.z} -> duration : ${duration}`;
+
+    if (min_motion_duration == 0) {
+      zero_motion_duration_count++;
+    } else if (min_motion_duration > duration) {
+      min_motion_duration = duration;
+    }
+    if (max_motion_duration < duration) {
+      max_motion_duration = duration;
+    }
+
+    document.getElementById("max2").innerHTML = `max: ${max_motion_duration}`;
+    document.getElementById("min2").innerHTML = `min: ${min_motion_duration} zero count=${zero_motion_duration_count}`;
+        
     last_motion_time = new_time;
   });
 });
@@ -36,8 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
   </head>
   <body>
   <div><span>deviceorientation: </span><span id="log1"></span></div>
-  <div id="max"></div>
-  <div id="min"></div>
+  <div id="max1"></div>
+  <div id="min1"></div>
   <div><span>devicemotion: </span><span id="log2"></span></div>
+  <div id="max2"></div>
+  <div id="min2"></div>
   </body>
 </html>
