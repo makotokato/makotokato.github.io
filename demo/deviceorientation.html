@@ -12,9 +12,8 @@ var last_motion_time = 0;
 var min_motion_duration = 10000;
 var max_motion_duration = 0;
 var zero_motion_duration_count = 0;
-    
-document.addEventListener("DOMContentLoaded", () => {
-  window.addEventListener("deviceorientation", event => {
+
+function device_orientation_handler(event) {
     let new_time = event.timeStamp;
     let duration = new_time - last_orientation_time;
     document.getElementById("log1").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}<br>duration : ${duration}`;
@@ -30,7 +29,28 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("min1").innerHTML = `min: ${min_orientation_duration} zero count=${zero_orientation_duration_count}`;
     
     last_orientation_time = new_time;
-  });
+}
+
+function device_device_orientation_absolute_handler(event) {
+}
+    
+function enable_device_orientation(aEnable) {
+  if (aEnable) {
+    window.addEventListener("deviceorientation", device_orientation_handler);
+  } else {
+    window.removeEventListener("deviceorientation", device_orientation_handler);
+  }
+}
+
+function enable_device_orientation_absolute(aEnable) {
+  if (aEnable) {
+    window.addEventListener("deviceorientationabsolute", device_orientation_absolute_handler);
+  } else {
+    window.removeEventListener("deviceorientationabsolute", device_orientation_absolute_handler);
+  }
+}
+    
+document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("devicemotion", event => {
     let new_time = event.timeStamp;
@@ -53,6 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
   </script>
   </head>
   <body>
+  <button onclick="enable_device_orientation(true)">enable deviceorientation</button>
+  <button onclick="enable_device_orientation(false)">disable deviceorientation</button>
+  <button onclick="enable_device_orientation_absolute(true)">enable deviceorientationabsolute</button>
+  <button onclick="enable_device_orientation_absolute(false)">disable deviceorientationabsolute</button>
+  
   <div><span>deviceorientation: </span><span id="log1"></span></div>
   <div id="max1"></div>
   <div id="min1"></div>
