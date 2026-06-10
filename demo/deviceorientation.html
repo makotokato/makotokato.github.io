@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("deviceorientation", event => {
     let new_time = event.timeStamp;
     let duration = new_time - last_time;
-    console.log(`${event.alpha} : ${event.beta} : ${event.gamma}`);
-    document.getElementById("log").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma} -> duration : ${new_time - last_time}`;
+    document.getElementById("log1").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma} -> duration : ${new_time - last_time}`;
 
     if (min_duration > duration) {
       min_duration = duration;
@@ -25,12 +24,20 @@ document.addEventListener("DOMContentLoaded", () => {
     
     last_time = new_time;
   });
+
+  var last_motion_time = 0;
+  window.addEventListener("devicemotion", event => {
+    let new_time = event.timeStamp;
+    document.getElementById("log2").innerHTML = `duration : ${new_time - last_motion_time}`;
+    last_motion_time = new_time;
+  });
 });
   </script>
   </head>
   <body>
-  <div id="log"></div>
+  <div><span>deviceorientation: </span><span id="log1"></span></div>
   <div id="max"></div>
   <div id="min"></div>
+  <div><span>deviceorientation: </span><span id="log2"></span></div>
   </body>
 </html>
