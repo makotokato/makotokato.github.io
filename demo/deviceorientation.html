@@ -8,6 +8,11 @@ var min_orientation_duration = 10000;
 var max_orientation_duration = 0;
 var zero_orientation_duration_count = 0;
 
+var last_orientation_absolute_time = 0;
+var min_orientation_absolute_duration = 10000;
+var max_orientation_absolute_duration = 0;
+var zero_orientation_absolute_duration_count = 0;
+    
 var last_motion_time = 0;
 var min_motion_duration = 10000;
 var max_motion_duration = 0;
@@ -32,8 +37,21 @@ function device_orientation_handler(event) {
 }
 
 function device_orientation_absolute_handler(event) {
-    let duration = 0;
+    let new_time = event.timeStamp;
+    let duration = new_time - last_orientation_absolute_time;
     document.getElementById("log2").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}<br>duration : ${duration}`;
+  
+    if (duration == 0) {
+      zero_orientation_absolute_duration_count++;
+    } else {
+      min_orientation_absolute_duration = Math.min(min_orientation_absolute_duration, duration);
+    }
+    max_orientation_absolute_duration = Math.max(max_orientation_absolute_duration, duration);
+
+    document.getElementById("max2").innerHTML = `max: ${max_orientation_absolute_duration}`;
+    document.getElementById("min2").innerHTML = `min: ${min_orientation_absolute_duration} zero count=${zero_orientation_absolute_duration_count}`;
+    
+    last_orientation_absolute_time = new_time;
 }
     
 function enable_device_orientation(aEnable) {
