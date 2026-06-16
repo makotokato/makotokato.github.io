@@ -75,6 +75,8 @@ function device_motion_handler(event) {
 function enable_device_orientation(aEnable) {
   if (aEnable) {
     window.addEventListener("deviceorientation", device_orientation_handler);
+    min_orientation_duration = 10000;
+    max_orientation_duration = 0;
   } else {
     window.removeEventListener("deviceorientation", device_orientation_handler);
   }
@@ -83,6 +85,8 @@ function enable_device_orientation(aEnable) {
 function enable_device_orientation_absolute(aEnable) {
   if (aEnable) {
     window.addEventListener("deviceorientationabsolute", device_orientation_absolute_handler);
+    min_orientation_absolute_duration = 10000;
+    max_orientation_absolute_duration = 0;
   } else {
     window.removeEventListener("deviceorientationabsolute", device_orientation_absolute_handler);
   }
@@ -91,6 +95,8 @@ function enable_device_orientation_absolute(aEnable) {
 function enable_device_motion(aEnable) {
   if (aEnable) {
     window.addEventListener("devicemotion", device_motion_handler);
+    min_motion_duration = 10000;
+    max_motion_duration = 0;
   } else {
     window.removeEventListener("devicemotion", device_motion_handler);
   }
