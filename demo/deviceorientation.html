@@ -21,7 +21,7 @@ var zero_motion_duration_count = 0;
 function device_orientation_handler(event) {
     let new_time = event.timeStamp;
     let duration = new_time - last_orientation_time;
-    document.getElementById("log1").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}<br>duration : ${duration}`;
+    document.getElementById("log1").innerHTML = `${event.alpha} :<br> ${event.beta} :<br> ${event.gamma}<br>duration : ${duration}`;
 
     if (duration == 0) {
       zero_orientation_duration_count++;
@@ -39,7 +39,7 @@ function device_orientation_handler(event) {
 function device_orientation_absolute_handler(event) {
     let new_time = event.timeStamp;
     let duration = new_time - last_orientation_absolute_time;
-    document.getElementById("log2").innerHTML = `${event.alpha} : ${event.beta} : ${event.gamma}<br>duration : ${duration}`;
+    document.getElementById("log2").innerHTML = `${event.alpha} : <br>${event.beta} : <br>${event.gamma}<br>duration : ${duration}`;
   
     if (duration == 0) {
       zero_orientation_absolute_duration_count++;
@@ -53,6 +53,24 @@ function device_orientation_absolute_handler(event) {
     
     last_orientation_absolute_time = new_time;
 }
+
+function device_motion_handler(event) {
+    let new_time = event.timeStamp;
+    let duration = new_time - last_motion_time;
+    document.getElementById("log3").innerHTML = `${event.acceleration.x} : <br>${event.acceleration.y} : <br>${event.acceleration.z}<br>duration : ${duration}`;
+
+    if (duration == 0) {
+      zero_motion_duration_count++;
+    } else {
+      min_motion_duration = Math.min(min_motion_duration, duration);
+    }
+    max_motion_duration = Math.max(max_motion_duration, duration);
+
+    document.getElementById("max3").innerHTML = `max: ${max_motion_duration}`;
+    document.getElementById("min3").innerHTML = `min: ${min_motion_duration} zero count=${zero_motion_duration_count}`;
+        
+    last_motion_time = new_time;
+}  
     
 function enable_device_orientation(aEnable) {
   if (aEnable) {
@@ -69,27 +87,14 @@ function enable_device_orientation_absolute(aEnable) {
     window.removeEventListener("deviceorientationabsolute", device_orientation_absolute_handler);
   }
 }
-    
-document.addEventListener("DOMContentLoaded", () => {
 
-  window.addEventListener("devicemotion", event => {
-    let new_time = event.timeStamp;
-    let duration = new_time - last_motion_time;
-    document.getElementById("log3").innerHTML = `${event.acceleration.x} : ${event.acceleration.y} : ${event.acceleration.z}<br>duration : ${duration}`;
-
-    if (duration == 0) {
-      zero_motion_duration_count++;
-    } else {
-      min_motion_duration = Math.min(min_motion_duration, duration);
-    }
-    max_motion_duration = Math.max(max_motion_duration, duration);
-
-    document.getElementById("max3").innerHTML = `max: ${max_motion_duration}`;
-    document.getElementById("min3").innerHTML = `min: ${min_motion_duration} zero count=${zero_motion_duration_count}`;
-        
-    last_motion_time = new_time;
-  });
-});
+function enable_device_motion(aEnable) {
+  if (aEnable) {
+    window.addEventListener("devicemotion", device_motion_handler);
+  } else {
+    window.removeEventListener("devicemotion", device_motion_handler);
+  }
+}
   </script>
   </head>
   <body>
@@ -97,6 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
   <button onclick="enable_device_orientation(false)">disable deviceorientation</button>
   <button onclick="enable_device_orientation_absolute(true)">enable deviceorientationabsolute</button>
   <button onclick="enable_device_orientation_absolute(false)">disable deviceorientationabsolute</button>
+  <button onclick="enable_device_motion(true)">enable devicemotion</button>
+  <button onclick="enable_device_motion(false)">disable devicemotion</button>
   
   <div><span>deviceorientation: </span><span id="log1"></span></div>
   <div id="max1"></div>
