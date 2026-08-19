@@ -23,7 +23,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   background: gray;
 }
-#refresh {
+#refreshbutton {
   position: fixed;
   top: 100px;
   left: 10px;
@@ -64,7 +64,7 @@ function refresh() {
 <div id="contents">
 <button onclick="enterFullscreen()">Fullscreen</button><br>
 <button onclick="exitFullscreen()">Exit Fullscreen</button><br>
-<button onclick="refresh() id="refresh">Show safe area insets variable</button><br>
+<button onclick="refresh() id="refreshbutton">Show safe area insets variable</button><br>
 <div id="result"></div>
 <div class="stuck-to-the-top-of-the-viewport">top</div>
 <div class="stuck-to-the-bottom-of-the-viewport">bottom</div>
