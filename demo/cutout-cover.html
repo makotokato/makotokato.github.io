@@ -39,11 +39,22 @@ body {
   background: red;
 }
 </style>
+<script>
+function refresh() {
+  let element = document.getElementById("contents");
+  let style = window.getComputedStyle(element);
+  let result = document.getElementById("result");
+  result.innerText = "safe-area-inset (" + style.getPropertyValue('padding-left') + ", " + style.getPropertyValue('padding-top') + ") - (" +
+  style.getPropertyValue('padding-right') + ", " + style.getPropertyValue('padding-bottom') + ")";
+}
+</script>
 </head>
 <body>
 <div id="contents">
 <button onclick="enterFullscreen()">Fullscreen</botton>
 <button onclick="exitFullscreen()">Exit Fullscreen</botton>
+<button onclick="refresh()">Show safe area insets variable</button>
+<div id="result"></div>
 <div class="stuck-to-the-top-of-the-viewport">top</div>
 <div class="stuck-to-the-bottom-of-the-viewport">bottom</div>
 </div>
