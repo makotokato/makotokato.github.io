@@ -56,7 +56,7 @@ function refresh() {
   let style = window.getComputedStyle(element);
   let result = document.getElementById("result");
   result.innerText = "safe-area-inset (" + style.getPropertyValue('padding-left') + ", " + style.getPropertyValue('padding-top') + ") - (" +
-  style.getPropertyValue('padding-right') + ", " + style.getPropertyValue('padding-bottom') + ")";
+  style.getPropertyValue('padding-right') + ", " + style.getPropertyValue('padding-bottom') + "), innerHeight=" + window.innerHeight;
 }
 </script>
 </head>
